@@ -1,5 +1,10 @@
+import { Navigation, ConfigurationGroup } from "../components";
+
 export default function Setting() {
   return (
-    <h1>This is Setting page.</h1>
+    <>
+      <Navigation title="설정"/>
+      <ConfigurationGroup title="설정"/>
+    </>
   )
-}
+};
