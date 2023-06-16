@@ -3,6 +3,7 @@ import { Navigation } from "../components";
 import { useRecoilState } from "recoil";
 import { timerConfigName } from "../recoil/atom";
 import { useState, useEffect } from "react";
+import ProgressBar from "../components/ProgressBar";
 
 let intervalID;
 
@@ -36,7 +37,6 @@ export default function Home() {
       setOnStart(false)
       clearInterval(intervalID);
     }
-
     function startTimer(){
       const { total } = timerObj.remainingTime;
       const endTime = Date.parse(new Date()) + (total * 1000);
@@ -46,13 +46,12 @@ export default function Home() {
       intervalID = setInterval(function() {
         setTimerObj({...timerObj, remainingTime : getRemainingTime(endTime)});
         const { total } = getRemainingTime(endTime);
-        console.log('total', total);
         if(total <= 0) {
           clearInterval(intervalID);
           switch(timerObj.mode) {
             case 'time' : 
               setMode('shortBreak');
-              startTimer()
+              startTimer();
             break;
             default:
               setMode('time');
@@ -75,7 +74,6 @@ export default function Home() {
         seconds,
       }
     };
-
     useEffect(() => {
       setMode('time');
     }, []);
@@ -85,15 +83,16 @@ export default function Home() {
         <Navigation/>
       </div>
       <Main>
-        <Timer>
-          { timerObj !== undefined ? (
+          { timerObj ? (
             <>
-              <Time>{minute < 10 ? `0${minute}` : minute}</Time>
-                <Colon>:</Colon>
-              <Time>{seconds < 10 ? `0${seconds}` : seconds}</Time>
+              <ProgressBar timerObj={timerObj}/>
+              <Timer>
+                <Time>{minute < 10 ? `0${minute}` : minute}</Time>
+                  <Colon>:</Colon>
+                <Time>{seconds < 10 ? `0${seconds}` : seconds}</Time>
+              </Timer>
             </>
           ) : null }
-        </Timer>
         <StartButton onClick={onStart ? stopTimer : startTimer} className={onStart ? "stop" : "start"}>
           {onStart ? "Stop" : "Start"}
         </StartButton>
@@ -116,7 +115,7 @@ const Main = styled.main`
   justify-content: center;
 `
 
-const Timer = styled.span`
+const Timer = styled.div`
   display: flex;
   align-items: center;
 `

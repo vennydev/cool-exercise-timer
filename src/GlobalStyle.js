@@ -10,7 +10,9 @@ const GlobalStyle = createGlobalStyle`
     --main-black: rgb(27,27,27);
     --main-grey: #272727;
     --grey: rgb(128,128,128);
-    --dimgrey: rgb(105,105,105);
+    --dim-grey: rgb(105,105,105);
+    --light-green: rgb(219,229,136);
+    --dim-green: rgb(55,165,66);
 
     --font-sm: 0.875rem;
     --font-base: 1rem;
