@@ -1,4 +1,4 @@
-import { Setting, NoMatch } from './pages';
+import { Home, Setting, NoMatch } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
@@ -9,6 +9,7 @@ export default function App() {
     <>
       <RecoilRoot>
         <Routes>
+          <Route path="/home" element={<Home />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>

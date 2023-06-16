@@ -18,12 +18,15 @@ const GlobalStyle = createGlobalStyle`
     --font-xl: 1.25rem;
   } 
 
-  body {
+  body, html {
     font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
     color: var(--white);
     line-height: 1.5;
     margin: 0;
     background-color: var(--main-grey);
+    width: 100vw;
+    height: 100vh;
   }
 
   h2, p { 
